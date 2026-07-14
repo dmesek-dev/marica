@@ -197,6 +197,40 @@ export default function Page() {
     setServerError('');
   }, []);
 
+  // ---------- Location / calendar actions ----------
+  const otvoriMapu = useCallback(() => {
+    const q = encodeURIComponent('Downstairs, Krešićeva 32, Zagreb');
+    window.open(`https://www.google.com/maps/search/?api=1&query=${q}`, '_blank', 'noopener,noreferrer');
+  }, []);
+
+  const dodajUKalendar = useCallback(() => {
+    // 29.8.2026. od 21h — party runs into the night (local time).
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Marica 30//RSVP//HR',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:marica30-2026@marica',
+      'DTSTART:20260829T210000',
+      'DTEND:20260830T020000',
+      'SUMMARY:Marica slavi 360 mjeseci 🪩',
+      'DESCRIPTION:Downstairs\\, Krešićeva 32 — terminali Borongaj\\, niz stepenice kod Mlinara.',
+      'LOCATION:Downstairs\\, Krešićeva 32\\, Zagreb',
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'marica-30.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }, []);
+
   // ---------- Derived ----------
   const decorations = useMemo(
     () =>
@@ -295,8 +329,22 @@ export default function Page() {
 
           {/* DETAILS */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, margin: '30px 0 8px', animation: 'riseIn .7s .25s both' }}>
-            <div style={{ ...chipStyle, borderColor: '#FFE600', transform: 'rotate(-1.5deg)' }}>📅 29.8.2026. od 21h</div>
-            <div style={{ ...chipStyle, borderColor: '#FFF3A0', transform: 'rotate(1.5deg)' }}>📍 Downstairs, Krešićeva 32</div>
+            <button
+              className="mc-chip"
+              onClick={dodajUKalendar}
+              title="Dodaj u kalendar"
+              style={{ ...chipStyle, borderColor: '#FFE600', transform: 'rotate(-1.5deg)' }}
+            >
+              📅 29.8.2026. od 21h
+            </button>
+            <button
+              className="mc-chip"
+              onClick={otvoriMapu}
+              title="Otvori u Google Maps"
+              style={{ ...chipStyle, borderColor: '#FFF3A0', transform: 'rotate(1.5deg)' }}
+            >
+              📍 Downstairs, Krešićeva 32
+            </button>
           </div>
           <p style={{ textAlign: 'center', color: '#FFE9C4', fontSize: 16, fontWeight: 600, maxWidth: 460, margin: '10px auto 0', lineHeight: 1.5, animation: 'riseIn .7s .3s both' }}>
             terminali Borongaj — ide se niz stepenice kod Mlinara
@@ -470,6 +518,9 @@ const chipStyle = {
   fontWeight: 600,
   fontSize: 18,
   boxShadow: '0 10px 24px rgba(0,0,0,.4)',
+  fontFamily: "'Fredoka',sans-serif",
+  cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
 };
 
 const cardStyle = {

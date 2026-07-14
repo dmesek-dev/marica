@@ -30,6 +30,10 @@ input, textarea { font-family: 'Fredoka', sans-serif; }
 .mc-ghost { transition: all .18s ease; }
 .mc-ghost:hover { border-color: #FFE600 !important; color: #FFE600 !important; }
 
+.mc-chip { transition: transform .18s ease, box-shadow .18s ease; }
+.mc-chip:hover { transform: translateY(-3px) scale(1.03) rotate(0deg) !important; box-shadow: 0 16px 30px rgba(0,0,0,.5) !important; }
+.mc-chip:active { transform: scale(.97) !important; }
+
 /* ---------- Keyframes (ported 1:1 from the design) ---------- */
 @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-24px)} }
 @keyframes floatyB { 0%,100%{transform:translateY(0) rotate(-9deg)} 50%{transform:translateY(-18px) rotate(9deg)} }
