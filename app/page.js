@@ -281,10 +281,10 @@ export default function Page() {
     marginTop: '24px',
     border: 'none',
     borderRadius: '999px',
-    padding: '18px',
+    padding: 'clamp(15px, 4vw, 18px)',
     fontFamily: "'Fredoka',sans-serif",
     fontWeight: 700,
-    fontSize: '21px',
+    fontSize: 'clamp(18px, 4.6vw, 21px)',
     cursor: submitting ? 'wait' : 'pointer',
     background: '#FFE600',
     color: '#2A0845',
@@ -312,7 +312,7 @@ export default function Page() {
 
       {/* ========== INVITE ========== */}
       {inviteVisible && (
-        <div style={{ position: 'relative', zIndex: 5, maxWidth: 760, margin: '0 auto', padding: '48px 20px 80px' }}>
+        <div style={{ position: 'relative', zIndex: 5, maxWidth: 760, margin: '0 auto', padding: 'clamp(28px, 7vw, 48px) clamp(18px, 5vw, 20px) 80px' }}>
           {/* HERO */}
           <div style={{ textAlign: 'center', animation: 'popIn .9s cubic-bezier(.2,.9,.3,1.3) both' }}>
             <h1 style={heroTitleStyle}>
@@ -402,8 +402,8 @@ export default function Page() {
           {/* THANK YOU */}
           {poslano && (
             <div style={{ ...cardStyle, textAlign: 'center', animation: 'popIn .8s cubic-bezier(.2,.9,.3,1.3) both', paddingTop: 38, paddingBottom: 38 }}>
-              <div style={{ fontSize: 80, animation: 'bounceBall 2.2s ease-in-out infinite' }}>🪩</div>
-              <h2 style={{ fontFamily: "'Bagel Fat One','Fredoka',cursive", fontWeight: 400, fontSize: 38, color: '#fff', margin: '6px 0 4px' }}>
+              <div style={{ fontSize: 'clamp(58px, 15vw, 80px)', animation: 'bounceBall 2.2s ease-in-out infinite' }}>🪩</div>
+              <h2 style={{ fontFamily: "'Bagel Fat One','Fredoka',cursive", fontWeight: 400, fontSize: 'clamp(30px, 8vw, 38px)', color: '#fff', margin: '6px 0 4px' }}>
                 {z.dolazak ? 'VIDIMO SE!' : 'Plaky'}
               </h2>
               <p style={{ fontSize: 19, color: '#FFE9C4', fontWeight: 600, margin: '0 0 18px' }}>
@@ -452,15 +452,15 @@ export default function Page() {
           }}
         >
           <div style={{ textAlign: 'center', maxWidth: 440 }}>
-            <div style={{ position: 'relative', width: 300, height: 210, margin: '0 auto 8px' }}>
+            <div style={{ '--env-w': 'clamp(200px, 64vw, 300px)', position: 'relative', width: 'var(--env-w)', height: 'calc(var(--env-w) * 0.7)', margin: '0 auto 8px' }}>
               <div style={{ position: 'absolute', inset: 0, borderRadius: 26, border: '3px solid #FFE600', animation: 'ringPulse 2.2s ease-out infinite' }} />
               <div style={envelopeStyle}>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: 0, height: 0, borderLeft: '150px solid transparent', borderRight: '150px solid transparent', borderTop: '118px solid #B57DDB', opacity: 0.95 }} />
-                <div style={{ position: 'absolute', top: 0, left: 0, width: 0, height: 0, borderLeft: '150px solid transparent', borderRight: '150px solid transparent', borderTop: '108px solid #9A5BC8', opacity: 0.55 }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, width: 0, height: 0, borderLeft: 'calc(var(--env-w) / 2) solid transparent', borderRight: 'calc(var(--env-w) / 2) solid transparent', borderTop: 'calc(var(--env-w) * 0.393) solid #B57DDB', opacity: 0.95 }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, width: 0, height: 0, borderLeft: 'calc(var(--env-w) / 2) solid transparent', borderRight: 'calc(var(--env-w) / 2) solid transparent', borderTop: 'calc(var(--env-w) * 0.36) solid #9A5BC8', opacity: 0.55 }} />
               </div>
             </div>
 
-            <h2 style={{ fontFamily: "'Bagel Fat One','Fredoka',cursive", fontWeight: 400, fontSize: 34, color: '#fff', margin: '18px 0 2px' }}>Marica 30</h2>
+            <h2 style={{ fontFamily: "'Bagel Fat One','Fredoka',cursive", fontWeight: 400, fontSize: 'clamp(26px, 7vw, 34px)', color: '#fff', margin: '18px 0 2px' }}>Marica 30</h2>
 
             <button onClick={open} style={openBtnStyle}>
               🪩 OTVORI 🪩
@@ -492,7 +492,7 @@ const rootStyle = {
 const heroTitleStyle = {
   fontFamily: "'Bagel Fat One','Fredoka',cursive",
   fontWeight: 400,
-  fontSize: 56,
+  fontSize: 'clamp(34px, 10vw, 56px)',
   lineHeight: 1.18,
   margin: '18px 0 2px',
   paddingBottom: 6,
@@ -501,7 +501,7 @@ const heroTitleStyle = {
 
 const heroImgStyle = {
   display: 'block',
-  height: 380,
+  height: 'clamp(220px, 54vw, 380px)',
   maxWidth: '86vw',
   objectFit: 'contain',
   transform: 'rotate(2deg)',
@@ -514,9 +514,9 @@ const chipStyle = {
   color: '#fff',
   border: '3px dashed #FFE600',
   borderRadius: 20,
-  padding: '14px 20px',
+  padding: 'clamp(10px, 2.8vw, 14px) clamp(13px, 3.6vw, 20px)',
   fontWeight: 600,
-  fontSize: 18,
+  fontSize: 'clamp(14px, 3.7vw, 18px)',
   boxShadow: '0 10px 24px rgba(0,0,0,.4)',
   fontFamily: "'Fredoka',sans-serif",
   cursor: 'pointer',
@@ -526,9 +526,9 @@ const chipStyle = {
 const cardStyle = {
   background: 'rgba(146,78,190,.92)',
   border: '4px solid #FFE600',
-  borderRadius: 32,
-  padding: '30px 26px 34px',
-  margin: '34px auto 0',
+  borderRadius: 'clamp(22px, 6vw, 32px)',
+  padding: 'clamp(22px, 6vw, 30px) clamp(18px, 5vw, 26px) clamp(26px, 7vw, 34px)',
+  margin: 'clamp(26px, 7vw, 34px) auto 0',
   maxWidth: 560,
   boxShadow: '0 26px 60px rgba(0,0,0,.5)',
   animation: 'riseIn .8s .45s both',
@@ -543,8 +543,8 @@ const cardBadgeStyle = {
   background: '#FFE600',
   color: '#2A0845',
   fontFamily: "'Bagel Fat One','Fredoka',cursive",
-  fontSize: 24,
-  padding: '8px 26px',
+  fontSize: 'clamp(18px, 5vw, 24px)',
+  padding: '8px clamp(18px, 5vw, 26px)',
   borderRadius: 999,
   boxShadow: '0 10px 20px rgba(0,0,0,.4)',
   whiteSpace: 'nowrap',
@@ -599,12 +599,12 @@ const envelopeStyle = {
 
 const openBtnStyle = {
   fontFamily: "'Bagel Fat One','Fredoka',cursive",
-  fontSize: 24,
+  fontSize: 'clamp(20px, 5.5vw, 24px)',
   background: '#FFE600',
   color: '#2A0845',
   border: 'none',
   borderRadius: 999,
-  padding: '18px 44px',
+  padding: 'clamp(14px, 4vw, 18px) clamp(30px, 8vw, 44px)',
   cursor: 'pointer',
   animation: 'pulseGlow 1.8s ease-in-out infinite',
 };
