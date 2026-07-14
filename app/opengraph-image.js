@@ -72,13 +72,39 @@ export default function OpengraphImage() {
           </div>
         </div>
 
-        {/* Right: the girl */}
-        <img
-          src={girlSrc}
-          width={430}
-          height={529}
-          style={{ objectFit: 'contain', transform: 'rotate(3deg)' }}
-        />
+        {/* Right: the girl + a disco ball */}
+        <div
+          style={{
+            display: 'flex',
+            position: 'relative',
+            width: 470,
+            height: 560,
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+          }}
+        >
+          {/* Big disco ball floating above/behind the girl */}
+          <div
+            style={{
+              position: 'absolute',
+              top: -6,
+              right: 6,
+              fontSize: 190,
+              filter: 'drop-shadow(0 14px 22px rgba(120,45,0,.4))',
+            }}
+          >
+            🪩
+          </div>
+          {/* Small twinkle */}
+          <div style={{ position: 'absolute', bottom: 40, left: 6, fontSize: 78 }}>🪩</div>
+
+          <img
+            src={girlSrc}
+            width={430}
+            height={529}
+            style={{ objectFit: 'contain', transform: 'rotate(3deg)' }}
+          />
+        </div>
       </div>
     ),
     {
