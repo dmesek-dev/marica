@@ -40,6 +40,16 @@ export default function Page() {
   const particlesRef = useRef([]);
   const runningRef = useRef(false);
 
+  // ---------- Lock page scroll while the sealed envelope is showing ----------
+  useEffect(() => {
+    if (stage === 'open') return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [stage]);
+
   // ---------- Restore my previous answer ----------
   useEffect(() => {
     try {
