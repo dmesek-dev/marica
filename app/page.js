@@ -380,7 +380,7 @@ export default function Page() {
                   Dolazim 🪩
                 </button>
                 <button className="mc-choice" onClick={() => { setDolazak(false); setHint(false); }} style={neStyle}>
-                  Ne dolazim 🪩
+                  Ne dolazim
                 </button>
               </div>
 
